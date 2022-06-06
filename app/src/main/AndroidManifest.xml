@@ -4,6 +4,7 @@
     package="com.teamb.paging3sample">
 
     <application
+        android:name=".common.PagingApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

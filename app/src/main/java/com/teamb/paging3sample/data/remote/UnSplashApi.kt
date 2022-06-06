@@ -3,7 +3,6 @@ package com.teamb.paging3sample.data.remote
 import com.teamb.paging3sample.BuildConfig
 import com.teamb.paging3sample.model.UnsplashImage
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.Query
 
