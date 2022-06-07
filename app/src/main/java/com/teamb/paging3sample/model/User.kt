@@ -1,13 +1,14 @@
 package com.teamb.paging3sample.model
 
 import androidx.room.Embedded
+import com.teamb.paging3sample.model.UserLinks
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class User(
-    val username: String,
     @SerialName("links")
     @Embedded
-    val userLinks: UserLink
+    val userLinks: UserLinks,
+    val username: String
 )

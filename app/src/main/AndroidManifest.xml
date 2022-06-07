@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.teamb.paging3sample">
 
+
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".common.PagingApplication"
         android:allowBackup="true"

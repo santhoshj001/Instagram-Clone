@@ -5,19 +5,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.teamb.paging3sample.common.Constants
 import com.teamb.paging3sample.model.UnsplashImage
 
 @Dao
 interface UnSplashImageDao {
-
-    @Query("SELECT * from ${Constants.UNSPLASH_IMAGE_TABLE}")
+    @Query("SELECT * FROM unsplash_image_table")
     fun getAllImages(): PagingSource<Int, UnsplashImage>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addImages(images: List<UnsplashImage>)
 
-    @Query("DELETE from ${Constants.UNSPLASH_IMAGE_TABLE}")
+    @Query("DELETE FROM unsplash_image_table")
     suspend fun deleteAllImages()
-
 }

@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 import com.teamb.paging3sample.common.Constants
 
 @Entity(tableName = Constants.UNSPLASH_REMOTE_KEYS_IMAGE_TABLE)
-data class UnSplashRemoteKeys(
-    @PrimaryKey
+data class UnsplashRemoteKeys(
+    @PrimaryKey(autoGenerate = false)
     val id: String,
     val prevPage: Int?,
     val nextPage: Int?
