@@ -6,5 +6,5 @@ object Constants {
     const val UNSPLASH_TABLE = "unsplash_table"
     const val UNSPLASH_IMAGE_TABLE = "unsplash_image_table"
     const val UNSPLASH_REMOTE_KEYS_IMAGE_TABLE = "unsplash_remote_keys_image_table"
-    const val PAGE_SIZE = 20
+    const val PAGE_SIZE = 25
 }

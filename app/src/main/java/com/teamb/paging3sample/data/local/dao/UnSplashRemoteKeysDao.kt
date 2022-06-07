@@ -9,8 +9,8 @@ import com.teamb.paging3sample.model.UnsplashRemoteKeys
 @Dao
 interface UnSplashRemoteKeysDao {
     @Query("SELECT * from unsplash_remote_keys_image_table WHERE id =:id")
-    fun getRemoteKeys(id :String): UnsplashRemoteKeys
-    
+    suspend fun getRemoteKeys(id: String): UnsplashRemoteKeys
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addAllRemoteKeys(keys: List<UnsplashRemoteKeys>)
 

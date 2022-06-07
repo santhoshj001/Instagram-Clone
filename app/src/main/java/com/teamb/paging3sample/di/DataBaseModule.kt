@@ -25,6 +25,4 @@ object DataBaseModule {
             Constants.UNSPLASH_TABLE
         ).build()
     }
-
-
 }

@@ -1,17 +1,18 @@
 package com.teamb.paging3sample.data.paging
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.teamb.paging3sample.common.Constants
-import com.teamb.paging3sample.model.UnsplashRemoteKeys
 import com.teamb.paging3sample.data.local.database.UnSplashDatabase
 import com.teamb.paging3sample.data.remote.UnSplashApi
 import com.teamb.paging3sample.model.UnsplashImage
+import com.teamb.paging3sample.model.UnsplashRemoteKeys
 
-@OptIn(ExperimentalPagingApi::class)
+@ExperimentalPagingApi
 class UnSplashRemoteMediator(
     private val unSplashDatabase: UnSplashDatabase,
     private val unSplashApi: UnSplashApi
@@ -48,7 +49,8 @@ class UnSplashRemoteMediator(
                 }
             }
 
-            val response = unSplashApi.getAllImages(page = currentPage, pageSize = Constants.PAGE_SIZE)
+            val response =
+                unSplashApi.getAllImages(page = currentPage, pageSize = Constants.PAGE_SIZE)
             val endOfPaginationReached = response.isEmpty()
 
             val prevPage = if (currentPage == 1) null else currentPage - 1
@@ -69,8 +71,11 @@ class UnSplashRemoteMediator(
                 unsplashRemoteKeysDao.addAllRemoteKeys(keys = keys)
                 unsplashImageDao.addImages(images = response)
             }
-            MediatorResult.Success(endOfPaginationReached = false)
+
+
+            MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: Exception) {
+            Log.i("sjdroid ", "load: error " + e.localizedMessage)
             return MediatorResult.Error(e)
         }
     }
@@ -102,5 +107,4 @@ class UnSplashRemoteMediator(
                 unsplashRemoteKeysDao.getRemoteKeys(id = unsplashImage.id)
             }
     }
-
 }
