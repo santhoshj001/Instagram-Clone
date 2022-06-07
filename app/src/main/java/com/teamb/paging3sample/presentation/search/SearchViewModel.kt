@@ -1,7 +1,9 @@
 package com.teamb.paging3sample.presentation.search
 
 import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
@@ -22,20 +24,19 @@ class SearchViewModel @Inject constructor(
     private val repository: PagingRepository
 ) : ViewModel() {
 
-
-    private val _searchQuery = mutableStateOf("")
-    val searchQuery: State<String> = _searchQuery
+     var searchQuery by mutableStateOf("")
+        private set
 
     private val _searchImages = MutableStateFlow<PagingData<UnsplashImage>>(PagingData.empty())
     val searchImages = _searchImages
 
 
     fun updateSearchQuery(query: String) {
-        _searchQuery.value = query
+        searchQuery = query
     }
 
     fun search(query: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             repository.searchImages(query).cachedIn(viewModelScope).collect {
                 _searchImages.value = it
             }

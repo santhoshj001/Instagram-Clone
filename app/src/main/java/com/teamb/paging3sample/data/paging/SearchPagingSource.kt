@@ -5,7 +5,6 @@ import androidx.paging.PagingState
 import com.teamb.paging3sample.common.Constants
 import com.teamb.paging3sample.data.remote.UnSplashApi
 import com.teamb.paging3sample.model.UnsplashImage
-import javax.inject.Inject
 
 class SearchPagingSource(
     private val unSplashApi: UnSplashApi,
@@ -19,7 +18,11 @@ class SearchPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UnsplashImage> {
         val currentPage = params.key ?: 1
         return try {
-            val response = unSplashApi.searchImages(query = query, pageSize = Constants.PAGE_SIZE)
+            val response = unSplashApi.searchImages(
+                query = query,
+                page = currentPage,
+                pageSize = Constants.PAGE_SIZE
+            )
             val endOfPaginationReached = response.images.isEmpty()
             if (endOfPaginationReached) {
                 LoadResult.Page(
@@ -30,8 +33,8 @@ class SearchPagingSource(
             } else {
                 LoadResult.Page(
                     data = response.images,
-                    prevKey = if (currentPage == 1) null else currentPage + 1,
-                    nextKey = if (endOfPaginationReached) null else currentPage - 1
+                    prevKey = if (currentPage == 1) null else currentPage - 1,
+                    nextKey = if (endOfPaginationReached) null else currentPage + 1
                 )
             }
         } catch (e: Exception) {
