@@ -1,4 +1,4 @@
-package com.teamb.paging3sample.presentation
+package com.teamb.paging3sample.presentation.homeScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

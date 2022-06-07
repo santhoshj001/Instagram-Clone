@@ -1,6 +1,7 @@
 package com.teamb.paging3sample.data.remote
 
 import com.teamb.paging3sample.BuildConfig
+import com.teamb.paging3sample.model.SearchResult
 import com.teamb.paging3sample.model.UnsplashImage
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -19,8 +20,8 @@ interface UnSplashApi {
     @Headers("Authorization: Client-ID ${BuildConfig.API_KEY}")
     @GET("/search/photos")
     suspend fun searchImages(
-        @Query("page") page: Int,
+        @Query("query") query: String,
         @Query("per_page") pageSize: Int
-    ): List<UnsplashImage>
+    ): SearchResult
 
 }

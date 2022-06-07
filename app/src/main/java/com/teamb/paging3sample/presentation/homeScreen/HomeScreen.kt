@@ -10,6 +10,7 @@ import coil.annotation.ExperimentalCoilApi
 import com.teamb.paging3sample.navigation.Screen
 import com.teamb.paging3sample.presentation.common.HomeTopBar
 import com.teamb.paging3sample.presentation.common.ListContent
+import com.teamb.paging3sample.presentation.homeScreen.HomeViewModel
 
 @ExperimentalCoilApi
 @ExperimentalPagingApi
