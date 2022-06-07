@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getAllImages().cachedIn(viewModelScope).collect {
+            repository.getAllImages().collect {
                 _allImages.value = it
             }
         }

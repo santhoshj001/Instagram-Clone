@@ -61,11 +61,11 @@ fun SearchToolBar(
                 color = MaterialTheme.colors.toAppBarContentColor
             ),
             keyboardActions = KeyboardActions(
-                onGo = {
+                onSearch = {
                     OnSearchSubmit(query)
                     keyboardController?.hide()
                 }
-            ), keyboardOptions = KeyboardOptions(imeAction = ImeAction.Go)
+            ), keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search)
         )
     }
 }
